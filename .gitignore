@@ -1,0 +1,44 @@
+# Local env
+.env
+
+# Working scratch space
+working/*
+!working/README.md
+!working/ask-chatgpt/
+working/ask-chatgpt/*.md
+!working/ask-chatgpt/TEMPLATE.md
+!working/status/
+!working/status/README.md
+!working/notes/
+!working/notes/README.md
+
+# Release / generated archives
+*.zip
+
+# Runtime / local artifacts
+logs/
+tmp/
+dist/
+build/
+coverage/
+node_modules/
+__pycache__/
+*.pyc
+.pytest_cache/
+playwright-report/
+test-results/
+screenshots/
+artifacts/
+*.sqlite
+*.db
+
+# Local app/data artifacts
+data/
+uploads/
+exports/
+debug/
+
+# OS/editor
+.DS_Store
+.vscode/
+.idea/

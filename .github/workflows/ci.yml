@@ -1,0 +1,27 @@
+name: CI
+
+on:
+  push:
+    branches:
+      - main
+      - dev
+      - '**'
+  pull_request:
+
+jobs:
+  ci:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out repo
+        uses: actions/checkout@v4
+
+      - name: Placeholder CI step
+        run: |
+          echo "Customize this workflow for the repo stack."
+          echo "Typical steps:"
+          echo "- install dependencies"
+          echo "- lint"
+          echo "- run unit/integration tests"
+          echo "- run build"
+          echo "- optionally run e2e"
