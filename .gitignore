@@ -4,9 +4,14 @@
 # Working scratch space
 working/*
 !working/README.md
-!working/ask-chatgpt/
-working/ask-chatgpt/*.md
-!working/ask-chatgpt/TEMPLATE.md
+!working/ask-ai/
+working/ask-ai/*.md
+!working/ask-ai/README.md
+!working/ask-ai/TEMPLATE.md
+!working/ask-ai/MIGRATE-REPO.md
+!working/export/
+working/export/*
+!working/export/README.md
 !working/status/
 !working/status/README.md
 !working/notes/

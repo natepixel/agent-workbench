@@ -96,7 +96,8 @@ This is intentionally a scratch/workspace area for:
 
 The template intentionally keeps a small committed structure inside `working/` for repeatable collaboration:
 - `working/README.md`
-- `working/ask-chatgpt/`
+- `working/ask-ai/`
+- `working/export/`
 - `working/status/`
 - `working/notes/`
 

@@ -1,4 +1,4 @@
-# Ask ChatGPT Template
+# Ask AI Template
 
 ## Question
 What specific question do you want answered?
@@ -25,8 +25,8 @@ What happens now?
 ## Desired behavior
 What should happen instead?
 
-## What Cursor / Claude / local AI already thinks
-Summarize any local AI analysis here.
+## What local AI already thinks
+Summarize any local AI analysis here (e.g. from Cursor, Claude, Codex, or similar).
 
 ## What kind of answer you want
 Examples:

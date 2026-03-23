@@ -21,7 +21,8 @@ Examples:
 Most files under `working/` are gitignored.
 
 The template intentionally keeps a small committed structure here so humans and AIs have standard places to work:
-- `ask-chatgpt/` for external AI handoff templates
+- `ask-ai/` for external AI handoff templates
+- `export/` for shareable zip bundles from `./scripts/export.sh` (only `README.md` is committed; `.zip` files are ignored)
 - `status/` for branch-specific status notes
 - `notes/` for lightweight committed working notes
 - this `README.md`
@@ -32,7 +33,8 @@ Note: `working/dev-state/` is a script-managed, gitignored path used for branch-
 
 ## Suggested subfolders
 
-- `ask-chatgpt/` — structured external AI handoffs
+- `ask-ai/` — structured external AI handoffs
+- `export/` — output from `./scripts/export.sh` (committed tree only)
 - `status/` — branch-specific status notes
 - `notes/` — temporary working notes
 

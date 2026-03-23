@@ -47,10 +47,12 @@ Use these entrypoints consistently:
 ./scripts/check-env.sh
 ./scripts/dev.sh
 ./scripts/status.sh
+./scripts/export.sh
 ```
 
 Notes:
 - `./scripts/dev.sh` is the only standard local development entrypoint
+- `./scripts/export.sh` builds a `.zip` of the committed tree (no gitignored deps) into `working/export/` — useful for external AI review; see `working/ask-ai/`
 - branch status notes belong in `working/status/`
 - temporary AI, handoff, and debug work belongs in `working/`
 - durable repo-specific operational knowledge belongs in `skills/`
