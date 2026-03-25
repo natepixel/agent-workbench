@@ -1,52 +1,60 @@
-# Migrate an existing repository (Ask AI prompt template)
+# Migrate an Existing Repo (Copy/Paste Prompt)
 
-Copy this file, fill in the bracketed sections, sanitize, then paste into an external AI. Optionally attach a zip from `./scripts/export.sh` run **in the target repo** so the AI sees the committed tree without gitignored clutter.
+Use this as a direct prompt for an AI that already has access to your target repository.
+
+Reference template repo:
+- https://github.com/natepixel/agent-workbench
+
+Optional but recommended:
+- In the target repo, run `./scripts/export.sh` (or equivalent) and attach the generated zip so the AI can inspect committed files without gitignored clutter.
 
 ---
 
-## Question
+## Copy/Paste Prompt
 
-Help me evolve an existing repository toward the **Agent Workbench** conventions: clear AI orientation, scratch vs durable docs, branch-aware dev scripts, and a testing ladder. Produce **[migration plan | concrete file list | patch-style instructions]** as specified below.
+You are working inside an existing repository and should migrate it toward the **Agent Workbench** conventions.
 
-## Repository context
+Reference for conventions and examples:
+- https://github.com/natepixel/agent-workbench
 
-- **Repo name / purpose:**
-- **Primary stack:** (languages, frameworks, package managers)
-- **How people run it locally today:**
-- **Where docs live today:** (README only, wiki, `docs/`, scattered, etc.)
-- **Link or path to this template for reference:** (e.g. clone or read `AGENTS.md` from `natepixel/agent-workbench`)
+Goal:
+- Adopt a convention-heavy structure that supports humans and coding agents with clear docs, stable script entrypoints, and clean scratch-vs-durable boundaries.
 
-## Current state (honest snapshot)
+Please do the following:
 
-- **What works well:**
-- **What is messy for humans or AIs:** (unclear entrypoints, clutter at repo root, no place for scratch work, etc.)
-- **Secrets / env:** how `.env` is handled today
+1) Analyze this repository and identify gaps vs these target conventions:
+- Top-level orienting docs: `README.md`, `AGENTS.md`, `STATUS.md`, `DEPLOY.md`
+- Stable scripts entrypoints under `scripts/` (especially `./scripts/dev.sh` as the main local dev entrypoint)
+- `working/` as mostly gitignored scratch space, with committed structure:
+  - `working/README.md`
+  - `working/ask-ai/TEMPLATE.md`
+  - `working/status/README.md`
+  - `working/notes/README.md`
+  - optional `working/export/README.md`
+- `skills/` for committed, repeatable operational workflows
+- `docs/decisions/` for durable design decisions
+- `tests/README.md` defining smoke -> unit -> integration -> e2e testing ladder
+- `.env.example` documenting required config/secrets (`.env` local-only)
 
-## What must not change
+2) Produce:
+- A prioritized migration plan (small, low-risk steps first)
+- Exact file-by-file changes needed
+- New files to add (with full contents)
+- Files to rename/move
+- `.gitignore` updates needed to enforce the structure
 
-- **Invariants:** (public APIs, prod behavior, team agreements)
-- **Files or dirs that are off-limits:**
+3) Implement the migration directly in this repository:
+- Apply the agreed changes
+- Keep runtime/business behavior stable unless a change is necessary for convention alignment
+- Keep repo root clean and high-signal
+- Add concise docs/comments where needed
 
-## Conventions to adopt (from Agent Workbench)
+4) After changes:
+- Summarize what changed and why
+- List follow-up items to customize for this specific repo
+- Propose a clear commit message
 
-Prioritize in this order unless you say otherwise:
-
-1. **`AGENTS.md`** — how AIs should work in *this* repo (read order, scripts contract, `working/` vs `skills/`, secrets).
-2. **`working/`** — scratch, branch status (`working/status/` with safe branch filenames), optional `working/export/` for shareable zips.
-3. **`skills/`** — committed, repeatable operational how-tos (not production code).
-4. **Scripts** — stable `./scripts/dev.sh` entrypoint; repo-specific logic in `scripts/dev.repo.sh`.
-5. **Testing ladder** — document smoke → unit → integration → e2e in `tests/README.md` (and `e2e/` when applicable).
-6. **Top-level vs `docs/`** — keep root lean; put architecture, decisions, runbooks under `docs/`.
-
-## Deliverable I want
-
-Check one or more:
-
-- [ ] Phased migration plan (small PRs, low risk first)
-- [ ] Ordered checklist of new/changed files
-- [ ] Copy-paste-ready snippets for `AGENTS.md`, `README.md`, and `scripts/dev.repo.sh` stubs
-- [ ] Suggested `.gitignore` updates for `working/` and exports
-
-## AI safety note
-
-Do not include real secrets, tokens, or PII. Use placeholders and describe where secrets should live (`.env.example` + local `.env` only).
+Constraints:
+- Do not commit secrets
+- Do not remove existing business logic unless it is clearly obsolete
+- Prefer additive, minimal-risk structural/documentation changes first
