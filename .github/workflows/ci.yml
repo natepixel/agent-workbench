@@ -9,19 +9,41 @@ on:
   pull_request:
 
 jobs:
-  ci:
+  lint-scripts:
+    name: Lint shell scripts
     runs-on: ubuntu-latest
-
     steps:
       - name: Check out repo
         uses: actions/checkout@v4
 
-      - name: Placeholder CI step
+      - name: Bash syntax check
         run: |
-          echo "Customize this workflow for the repo stack."
-          echo "Typical steps:"
-          echo "- install dependencies"
-          echo "- lint"
-          echo "- run unit/integration tests"
-          echo "- run build"
-          echo "- optionally run e2e"
+          set -euo pipefail
+          fail=0
+          while IFS= read -r f; do
+            echo "bash -n $f"
+            bash -n "$f" || fail=1
+          done < <(find scripts -type f -name '*.sh')
+          exit "$fail"
+
+      - name: ShellCheck
+        run: shellcheck scripts/*.sh
+
+  check-env:
+    name: Validate check-env.sh
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repo
+        uses: actions/checkout@v4
+
+      - name: Fails when .env is missing
+        run: |
+          if ./scripts/check-env.sh; then
+            echo "Expected check-env.sh to fail without .env"
+            exit 1
+          fi
+
+      - name: Passes when .env mirrors .env.example
+        run: |
+          cp .env.example .env
+          ./scripts/check-env.sh
