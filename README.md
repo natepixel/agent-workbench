@@ -46,12 +46,14 @@ Use these entrypoints consistently:
 ```bash
 ./scripts/check-env.sh
 ./scripts/dev.sh
+./scripts/stop.sh
 ./scripts/status.sh
 ./scripts/export.sh
 ```
 
 Notes:
 - `./scripts/dev.sh` is the only standard local development entrypoint
+- `./scripts/stop.sh` cleans up the dev server started by `dev.sh` for the current branch
 - `./scripts/export.sh` builds a `.zip` of the committed tree (no gitignored deps) into `working/export/` — useful for external AI review; see `working/ask-ai/`
 - branch status notes belong in `working/status/`
 - temporary AI, handoff, and debug work belongs in `working/`

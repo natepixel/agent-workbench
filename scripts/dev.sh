@@ -57,7 +57,7 @@ STARTED_AT=$(date -u +"%Y-%m-%dT%H:%M:%SZ")
 APP_PORT=${APP_PORT:-}
 API_PORT=${API_PORT:-}
 WEB_PORT=${WEB_PORT:-}
-PID_FILE=${PID_FILE:-}
+DEV_PIDS=${DEV_PIDS:-}
 DEV_URL=${DEV_URL:-}
 EOF
 }
@@ -118,7 +118,8 @@ main() {
     echo "Primary URL: ${DEV_URL}"
   fi
   echo "Status: ./scripts/status.sh"
-  echo "State: $(branch_state_file)"
+  echo "Stop:   ./scripts/stop.sh"
+  echo "State:  $(branch_state_file)"
 }
 
 main "$@"

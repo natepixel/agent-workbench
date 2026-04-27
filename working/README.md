@@ -24,6 +24,7 @@ The template intentionally keeps a small committed structure here so humans and 
 - `ask-ai/` for external AI handoff templates
 - `export/` for shareable zip bundles from `./scripts/export.sh` (only `README.md` is committed; `.zip` files are ignored)
 - `status/` for branch-specific status notes
+- `memory/` for agent-managed memory (only `README.md` is committed)
 - `notes/` for lightweight committed working notes
 - this `README.md`
 
@@ -36,6 +37,7 @@ Note: `working/dev-state/` is a script-managed, gitignored path used for branch-
 - `ask-ai/` — structured external AI handoffs
 - `export/` — output from `./scripts/export.sh` (committed tree only)
 - `status/` — branch-specific status notes
+- `memory/` — agent-managed memory (gitignored)
 - `notes/` — temporary working notes
 
 Use the safe branch filename convention described in `working/status/README.md`.

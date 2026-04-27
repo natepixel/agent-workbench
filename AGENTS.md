@@ -2,6 +2,10 @@
 
 This file helps AI tools like ChatGPT, Cursor, Claude, Codex, and similar assistants understand how to work in this repo.
 
+`AGENTS.md` is the source of truth. Tool-specific entrypoints (such as
+`CLAUDE.md` for Claude Code) should be thin pointers that import this file
+rather than duplicate it.
+
 ## Repo purpose
 
 This repository is a reusable starter template for projects that combine:
@@ -43,10 +47,13 @@ It is both:
 For local development, always use:
 
 ```bash
-./scripts/dev.sh
+./scripts/dev.sh    # start
+./scripts/stop.sh   # stop the server started by dev.sh on this branch
 ```
 
 Do not run `scripts/dev.repo.sh` directly unless you are actively editing the repo-specific startup logic.
+
+`stop.sh` calls `repo_dev_stop()` if `scripts/dev.repo.sh` defines one; otherwise it kills every PID listed in `DEV_PIDS` from the branch state file. Repo-specific startup hooks should export `DEV_PIDS` so shutdown works cleanly.
 
 ### `dev.sh` and `dev.repo.sh`
 
@@ -75,7 +82,7 @@ When editing local dev behavior:
 
 After `repo_dev_start()` returns, `./scripts/dev.sh` writes branch-local dev state for the current worktree/branch.
 
-In practice, this means values set or exported by the repo-specific startup hook — such as `APP_PORT`, `API_PORT`, `WEB_PORT`, and `DEV_URL` — are the values that get persisted and later surfaced by scripts like `./scripts/status.sh`.
+In practice, this means values set or exported by the repo-specific startup hook — such as `APP_PORT`, `API_PORT`, `WEB_PORT`, `DEV_URL`, and `DEV_PIDS` — are the values that get persisted and later surfaced by scripts like `./scripts/status.sh` and consumed by `./scripts/stop.sh`.
 
 If local startup behavior needs different persisted values, set or export them in `repo_dev_start()`.
 
@@ -99,6 +106,7 @@ The template intentionally keeps a small committed structure inside `working/` f
 - `working/ask-ai/`
 - `working/export/`
 - `working/status/`
+- `working/memory/` (only `README.md` is committed)
 - `working/notes/`
 
 Anything else under `working/` should generally be treated as temporary unless the repo explicitly chooses to commit it.
@@ -114,23 +122,16 @@ In particular:
 - humans and AI agents should generally not edit it by hand unless they are intentionally debugging the repo scripts
 
 ### `working/status/`
-Branch-aware status notes live here.
+Branch-aware status notes live here. See `working/status/README.md` for the
+filename convention (used by `scripts/status.sh`) and the recommended
+contents.
 
-Filename rule:
-- use the git branch name
-- replace `/` and `:` with `__`
-- add `.md`
-
-This is the same convention used by `scripts/status.sh`.
-
-Status updates should include:
-- date
-- branch name
-- short goal
-- current state
-- most relevant commits
-- next step
-- blockers
+### `working/memory/`
+Designated location for agent-managed memory — facts, conventions, or context
+an agent wants to persist across sessions. Gitignored except for its
+`README.md`. Use this instead of inventing a `memory.md`, `notes.md`, or
+`CLAUDE-notes.md` at the repo root. See `working/memory/README.md` for rules
+and the promotion path into `skills/`, `STATUS.md`, or `docs/`.
 
 ## Skills model
 

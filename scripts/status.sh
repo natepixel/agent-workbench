@@ -36,6 +36,7 @@ if [[ -f "${state_file}" ]]; then
   [[ -n "${API_PORT:-}" ]] && echo "API_PORT: ${API_PORT}"
   [[ -n "${WEB_PORT:-}" ]] && echo "WEB_PORT: ${WEB_PORT}"
   [[ -n "${DEV_URL:-}" ]] && echo "DEV_URL: ${DEV_URL}"
+  [[ -n "${DEV_PIDS:-}" ]] && echo "DEV_PIDS: ${DEV_PIDS}"
 else
   echo "Dev state file: none"
 fi

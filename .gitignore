@@ -16,6 +16,9 @@ working/export/*
 !working/status/README.md
 !working/notes/
 !working/notes/README.md
+!working/memory/
+working/memory/*
+!working/memory/README.md
 
 # Release / generated archives
 *.zip
