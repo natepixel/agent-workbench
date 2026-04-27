@@ -24,17 +24,24 @@ Please do the following:
 
 1) Analyze this repository and identify gaps vs these target conventions:
 - Top-level orienting docs: `README.md`, `AGENTS.md`, `STATUS.md`, `DEPLOY.md`
-- Stable scripts entrypoints under `scripts/` (especially `./scripts/dev.sh` as the main local dev entrypoint)
+- Tool-specific agent files (e.g. `CLAUDE.md`) as thin pointers to `AGENTS.md` rather than duplicates
+- Stable scripts entrypoints under `scripts/`:
+  - `./scripts/dev.sh` as the main local dev entrypoint
+  - `./scripts/stop.sh` paired with it (kills processes registered as `DEV_PIDS` by `scripts/dev.repo.sh::repo_dev_start()`, or calls `repo_dev_stop()` if defined)
+  - `./scripts/status.sh`, `./scripts/check-env.sh`, `./scripts/export.sh`
 - `working/` as mostly gitignored scratch space, with committed structure:
   - `working/README.md`
   - `working/ask-ai/TEMPLATE.md`
   - `working/status/README.md`
   - `working/notes/README.md`
+  - `working/memory/README.md` (agent-managed memory; the rest is gitignored)
   - optional `working/export/README.md`
 - `skills/` for committed, repeatable operational workflows
 - `docs/decisions/` for durable design decisions
 - `tests/README.md` defining smoke -> unit -> integration -> e2e testing ladder
 - `.env.example` documenting required config/secrets (`.env` local-only)
+
+The template also ships a small CI workflow that lints `scripts/*.sh` with `shellcheck` and exercises `check-env.sh`. Adopt it if useful; skip if the target repo has its own CI conventions.
 
 2) Produce:
 - A prioritized migration plan (small, low-risk steps first)
@@ -46,6 +53,7 @@ Please do the following:
 3) Implement the migration directly in this repository:
 - Apply the agreed changes
 - Keep runtime/business behavior stable unless a change is necessary for convention alignment
+- Where the target repo already has files like `AGENTS.md`, `CLAUDE.md`, `STATUS.md`, or a dev script, preserve project-specific content and merge in what's missing rather than overwrite
 - Keep repo root clean and high-signal
 - Add concise docs/comments where needed
 
