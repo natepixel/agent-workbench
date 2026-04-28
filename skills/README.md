@@ -14,7 +14,7 @@ Put committed, repeatable, repo-relevant operational knowledge here.
 
 Examples:
 - how to debug the local API
-- how to use Showboat or Rodney in this repo
+- how to capture visual evidence of a UI change
 - how to run a recurring operational workflow
 - how to inspect deploy state
 - how to perform repo-specific maintenance tasks
@@ -40,4 +40,7 @@ Each skill should explain:
 
 ## Example skills in this template
 - `local-api-debugging.md`
-- `showboat-rodney-workflow.md`
+- `visual-evidence.md`
+
+These are starter examples. Replace them with skills relevant to your repo as
+soon as the template is forked.

@@ -30,6 +30,7 @@ This is a starter/workbench template; some scripts are scaffolding and are meant
 ## Folder overview
 
 - `AGENTS.md` — how AIs should understand and operate in the repo
+- `CLAUDE.md` — thin pointer that imports `AGENTS.md` (Claude Code reads this automatically)
 - `STATUS.md` — high-level current status
 - `DEPLOY.md` — deployment model and expectations
 - `docs/decisions/` — durable design decisions
@@ -70,20 +71,19 @@ Use this repo to evolve the template. The normal workflow is:
 
 ## Getting started
 
-1. **First run:** Copy `.env.example` to `.env` and add real values as needed (`cp .env.example .env`). Then you can run `./scripts/check-env.sh`.
+1. **First run:** Copy `.env.example` to `.env` and add real values as needed (`cp .env.example .env`). Then run `./scripts/check-env.sh` to verify, and `./scripts/dev.sh` to start. On a fresh fork, `dev.sh` will print a stub message — that's expected; customize `scripts/dev.repo.sh::repo_dev_start()` to make it actually start your app.
 2. Use this repo as a starter by cloning or copying it into a new project folder, then updating the core docs and scripts for that project.
-3. Update:
-   - `README.md`
-   - `AGENTS.md`
-   - `STATUS.md`
-   - `DEPLOY.md`
-   - `.env.example`
-4. Customize:
-   - `scripts/dev.repo.sh`
-   - `scripts/check-env.sh`
-   - CI workflow
-   - test commands
-5. Add project-specific skills in `skills/`
+3. Update top-level docs for your project:
+   - `README.md` — replace the title and description with your project
+   - `AGENTS.md` — adjust the **Repo purpose** section; the conventions can usually stay
+   - `STATUS.md` — replace the template content with your project's actual status
+   - `DEPLOY.md` — replace with your real deployment model (or note that there isn't one)
+   - `.env.example` — list the keys your project actually needs
+4. Customize scripts and CI:
+   - `scripts/dev.repo.sh` — implement `repo_dev_start()` for your stack (and optionally `repo_dev_stop()`)
+   - `scripts/check-env.sh` — usually fine as-is unless you need richer validation
+   - `.github/workflows/ci.yml` — add your real test commands
+5. Replace the example skills in `skills/` with ones that are useful for your repo.
 
 ## Root cleanliness rule
 

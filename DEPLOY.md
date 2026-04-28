@@ -1,3 +1,5 @@
+<!-- TEMPLATE: replace this file's contents with your project's real deployment model when you fork. -->
+
 # DEPLOY
 
 This template repo does not define a real deployment model for itself. When you use this repo as a starter, replace or adapt this file to describe the deployment model for the new repo. The checklist below is for that downstream project.
