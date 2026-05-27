@@ -145,6 +145,16 @@ Use a skill when the knowledge:
 
 Draft skills can start in `working/` and later be promoted into `skills/`.
 
+## Cross-repo coordination
+
+If `cheshire whoami` succeeds in this repo (the Cheshire daemon is running and
+this repo is registered), run `cheshire inbox` on session start to surface any
+messages another repo — or you, earlier — left for this one. Handle, defer, or
+mark them read before moving on. See `skills/cheshire.md` for the full bridge
+workflow (posting to other repos, reading their files/skills, the live-agent
+escape hatch). If `cheshire` isn't installed or the daemon isn't running, skip
+this silently.
+
 ## Testing expectations
 
 Every repo should think about testing from the outset.
