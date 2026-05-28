@@ -50,3 +50,4 @@ debug/
 .DS_Store
 .vscode/
 .idea/
+.claude/
