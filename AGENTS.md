@@ -86,6 +86,21 @@ In practice, this means values set or exported by the repo-specific startup hook
 
 If local startup behavior needs different persisted values, set or export them in `repo_dev_start()`.
 
+## Worktrees
+
+Git worktrees let several branches be checked out at once (handy for parallel AI sessions). This template does not mandate one location — it standardizes how to place, find, and clean them so any tool or human can cope.
+
+- **Manual worktrees** (ones you create by hand) go in `.worktrees/<branch>/` at the repo root:
+  ```bash
+  git worktree add .worktrees/FEATURE-x FEATURE-x
+  ```
+- **Tool-created worktrees** keep their tool's own default — do not fight them. For example, Claude Code uses `.claude/worktrees/<name>/` (branch `worktree-<name>`); Codex and Cursor namespace under their own branch prefixes (`codex/…`, `cursor/…`).
+- **To find every worktree, run `git worktree list`.** It is the source of truth regardless of where the worktree lives — never hunt by directory path or assume a single location.
+- **Hygiene:**
+  - `.worktrees/` and `.claude/worktrees/` are gitignored (see `.gitignore`).
+  - Run `git worktree prune` to clear stale entries.
+  - Worktree links use absolute paths, so they break if the parent repo is moved or renamed. After moving, run `git worktree repair`; or just remove and recreate the worktree.
+
 ## Working folders
 
 ### `working/`

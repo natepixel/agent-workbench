@@ -51,3 +51,7 @@ debug/
 .vscode/
 .idea/
 .claude/
+
+# Git worktrees (see AGENTS.md -> Worktrees).
+# .claude/worktrees/ is already covered by .claude/ above.
+.worktrees/
