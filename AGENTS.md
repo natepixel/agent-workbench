@@ -26,7 +26,8 @@ It is both:
 3. `DEPLOY.md`
 4. `working/README.md`
 5. `skills/README.md`
-6. `tests/README.md`
+6. `skills.local/README.md`
+7. `tests/README.md`
 
 ## Core operating rules
 
@@ -160,15 +161,20 @@ Use a skill when the knowledge:
 
 Draft skills can start in `working/` and later be promoted into `skills/`.
 
-## Cross-repo coordination
+### Local skills (`skills.local/`)
 
-If `cheshire whoami` succeeds in this repo (the Cheshire daemon is running and
-this repo is registered), run `cheshire inbox` on session start to surface any
-messages another repo — or you, earlier — left for this one. Handle, defer, or
-mark them read before moving on. See `skills/cheshire.md` for the full bridge
-workflow (posting to other repos, reading their files/skills, the live-agent
-escape hatch). If `cheshire` isn't installed or the daemon isn't running, skip
-this silently.
+`skills.local/` holds **machine-local** skills — gitignored, never pushed. Use
+it for workflows that depend on tools installed only on your Mac (personal
+daemons, SSH shortcuts, local credentials).
+
+On session start, after reading committed `skills/`:
+
+1. If `skills.local/` exists, read every `*.md` file there except `README.md`.
+2. Briefly note which local skills loaded (names only), or continue silently
+   when the directory is empty or absent.
+3. Skip any skill whose prerequisites are missing — do not error.
+
+See `skills/local-skills.md` and `skills.local/README.md` for the full convention.
 
 ## Testing expectations
 

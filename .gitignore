@@ -1,6 +1,10 @@
 # Local env
 .env
 
+# Machine-local agent skills (committed signpost only — see skills.local/README.md)
+skills.local/*
+!skills.local/README.md
+
 # Working scratch space
 working/*
 !working/README.md

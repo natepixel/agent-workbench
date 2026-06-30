@@ -2,6 +2,10 @@
 
 This folder contains committed, repo-specific operational skills.
 
+Machine-local skills (tools only you run on this Mac) belong in
+[`skills.local/`](../skills.local/README.md) instead — gitignored, never pushed.
+See [`local-skills.md`](local-skills.md) for the convention.
+
 A skill is useful when it:
 - helps humans or AIs repeatedly operate in this repo
 - captures a recurring workflow
@@ -41,6 +45,7 @@ Each skill should explain:
 ## Example skills in this template
 - `local-api-debugging.md`
 - `visual-evidence.md`
+- `local-skills.md` — the `skills.local/` convention (machine-local skills)
 
 These are starter examples. Replace them with skills relevant to your repo as
 soon as the template is forked.
