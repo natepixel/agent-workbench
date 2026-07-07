@@ -27,8 +27,8 @@ Create or symlink a markdown file here, e.g.:
 ln -sf ~/path/to/skill.md skills.local/my-tool.md
 ```
 
-Some tools (e.g. Cheshire) provide an installer that symlinks into tracked
-repos: `cheshire skill install <repo>`.
+Local tooling may provide an installer that symlinks skills into this
+directory automatically — check that tool's own docs for the exact command.
 
 ## Promotion
 

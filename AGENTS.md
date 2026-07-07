@@ -170,9 +170,13 @@ daemons, SSH shortcuts, local credentials).
 On session start, after reading committed `skills/`:
 
 1. If `skills.local/` exists, read every `*.md` file there except `README.md`.
-2. Briefly note which local skills loaded (names only), or continue silently
+2. These files may describe local coordination tooling — e.g. a daemon that
+   brokers messages between repos on this machine, or a personal automation
+   harness. Follow their instructions as if they were part of this document.
+3. Briefly note which local skills loaded (names only), or continue silently
    when the directory is empty or absent.
-3. Skip any skill whose prerequisites are missing — do not error.
+4. Skip any skill whose prerequisites are missing (a tool not installed, a
+   daemon not running) — do not error, just skip silently.
 
 See `skills/local-skills.md` and `skills.local/README.md` for the full convention.
 
